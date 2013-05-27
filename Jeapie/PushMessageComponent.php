@@ -65,6 +65,9 @@ class PushMessageComponent extends CComponent
         if (!empty($this->configs['message']))
             $this->_pushMessage->setMessage($this->configs['message']);
 
+        if (!empty($this->configs['device']))
+            $this->_pushMessage->setDevice($this->configs['device']);
+
 		if (!empty($this->configs['priority']))
 			$this->_pushMessage->setPriority($this->configs['priority']);
 	}
