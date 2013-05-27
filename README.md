@@ -3,18 +3,21 @@ push-message-for-yii
 
 It's a wrapper for the standard library Jeapie. 
  In the config can set default values ​​user, token, title, priority
- 
-    'Jeapie' => array(
-        'class' => 'ext.Jeapie.PushMessageComponent',
-        'configs' => array(        //optional parameter
-         'user' => 'userKey',
-        	'token' => 'userToken',
-        	'title' => 'title',
-        'device' => 'htcsensation',
-        'message' => 'message',
-        	'priority' => 0,
+
+    'components'=>array(
+         ...
+        'Jeapie' => array(
+            'class' => 'ext.Jeapie.PushMessageComponent',
+            'configs' => array(        //optional parameter
+                'user' => 'userKey',
+        	       'token' => 'userToken',
+        	       'title' => 'title',
+                'device' => 'htcsensation',
+                'message' => 'message',
+                'priority' => 0,
+            ),
         ),
-    ),
+          ...
  
  And immediately send a push notification:
  
