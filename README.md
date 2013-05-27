@@ -10,8 +10,8 @@ It's a wrapper for the standard library Jeapie.
             'class' => 'ext.Jeapie.PushMessageComponent',
             'configs' => array(        //optional parameter
                 'user' => 'userKey',
-        	       'token' => 'userToken',
-        	       'title' => 'title',
+                'token' => 'userToken',
+                'title' => 'title',
                 'device' => 'htcsensation',
                 'message' => 'message',
                 'priority' => 0,
