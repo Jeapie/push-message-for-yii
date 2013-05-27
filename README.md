@@ -4,6 +4,14 @@ push-message-for-yii
 It's a wrapper for the standard library Jeapie. 
  In the config can set default values ​​user, token, title, priority
 
+    'import'=>array(
+          ...
+        'application.extentions.Jeapie.*'
+          ...
+    ),
+    
+         ....
+    
     'components'=>array(
          ...
         'Jeapie' => array(
