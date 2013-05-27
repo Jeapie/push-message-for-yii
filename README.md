@@ -1,7 +1,7 @@
 push-message-for-yii
 ====================
 
-It's a wrapper for the standard library Jeapie. 
+It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie"). 
  In the config can set default values ​​user, token, title, priority
 
     'import'=>array(
@@ -27,7 +27,7 @@ It's a wrapper for the standard library Jeapie.
         ),
           ...
  
- And immediately send a push notification:
+ And immediately send a native mobile push notification:
  
 `Yii::app()->Jeapie->send();`
  
@@ -41,3 +41,5 @@ It's a wrapper for the standard library Jeapie.
         ->setDevice('htcsensation')     // not require
         ->setPriority(0)      // not require. can be -1, 0, 1
         ->send();             // return true or false
+
+If you are not familiar with Jeapie - visit http://jeapie.com
