@@ -20,7 +20,7 @@ It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
                 'user' => 'userKey',
                 'token' => 'userToken',
                 'title' => 'title',
-                'device' => 'htcsensation',
+                'device' => 'deviceName',
                 'message' => 'message',
                 'priority' => 0,
             ),
