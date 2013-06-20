@@ -1,7 +1,7 @@
 push-message-for-yii
 ====================
 
-It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie"). 
+It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
  In the config can set default values ​​user, token, title, priority
 
     'import'=>array(
@@ -9,9 +9,9 @@ It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
         'application.extentions.Jeapie.*'
           ...
     ),
-    
+
          ....
-    
+
     'components'=>array(
          ...
         'Jeapie' => array(
@@ -26,22 +26,25 @@ It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
             ),
         ),
           ...
- 
+
  And immediately send a native mobile push notification:
- 
+
 `Yii::app()->Jeapie->send();`
- 
+
  Or define/redefine in program
- 
+
     Yii::app()->Jeapie
         ->setUser('userKey')            // require
         ->setToken('tokenKey')          // require
         ->setTitle('titleOfMessage')    // not require
         ->setMessage('bodyOfMessage')   // require
         ->setDevice('htcsensation')     // not require
-        ->setPriority(0)      // not require. can be -1, 0, 1
-        ->send();             // return true or false
+        ->setPriority(0)                // not require. can be -1, 0, 1
+        ->disableSslVerification()      // optional
+        ->send();                       // return true or false
 
+If you have error **"SSL certificate problem: unable to get local issuer certificate"** on your local server
+please use the method disableSslVerification().
 
 If you are not familiar with Jeapie - visit http://jeapie.com
 

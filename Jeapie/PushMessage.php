@@ -53,6 +53,9 @@ class PushMessage
         $_device = '',
         $_priority = 0;
 
+    private $_useSslVerification = true;
+
+
     private function __clone() {}
 
     private function __wakeup() {}
@@ -261,6 +264,29 @@ class PushMessage
 
 
     /**
+     * Disable ssl verification if have error:
+     * "SSL certificate problem: unable to get local issuer certificate"
+     */
+    public function disableSslVerification()
+    {
+        $this->_useSslVerification = false;
+
+        return $this;
+    }
+
+
+    /**
+     * Enable ssl verification
+     */
+    public function enableSslVerification()
+    {
+        $this->_useSslVerification = true;
+
+        return $this;
+    }
+
+
+    /**
      * Get result
      *
      * @return bool
@@ -301,7 +327,10 @@ class PushMessage
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, self::API_URL);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+
+        if (!$this->_useSslVerification)
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
         curl_setopt($ch, CURLOPT_POSTFIELDS, array(
             'user'     => $this->getUser(),
             'token'    => $this->getToken(),
@@ -310,16 +339,27 @@ class PushMessage
             'device'   => $this->getDevice(),
             'priority' => $this->getPriority(),
         ));
-        $response = curl_exec($ch);
-        curl_close($ch);
 
-        try {
-            $result = json_decode($response, true);
-        } catch (Exception $e) {
+        if (!$response = curl_exec($ch))
+        {
             $result = array(
                 'success' => false,
-                'errors'  => 'Sorry, some errors. Please contact http://jeapie.com',
+                'errors'  => curl_error($ch),
             );
+        }
+
+        curl_close($ch);
+
+        if (empty($result))
+        {
+            try {
+                $result = json_decode($response, true);
+            } catch (Exception $e) {
+                $result = array(
+                    'success' => false,
+                    'errors'  => $e->getMessage(),
+                );
+            }
         }
 
         if (isset($result['success']) && $result['success'] == true) {
