@@ -8,10 +8,8 @@ Yii::import('ext.Jeapie.exceptions.JeapieException');
  * 'Jeapie' => array(
  *			'class' => 'ext.Jeapie.PushMessageComponent',
  *			'configs' => array(        //optional parameter
- *				'user' => 'userKey',
  *				'token' => 'userToken',
  *				'title' => 'title',
- *              'device' => 'htcsensation',
  *              'message' => 'message',
  *				'priority' => 0,
  *			),
@@ -19,18 +17,23 @@ Yii::import('ext.Jeapie.exceptions.JeapieException');
  * 
  * And immediately send a push notification:
  * 
- * Yii::app()->Jeapie->send();
+ * Yii::app()->Jeapie->personalSend();
  * 
  * Or define/redefine in program
  * 
  * Yii::app()->Jeapie
- *     ->setUser('userKey')            // require
  *     ->setToken('tokenKey')          // require
  *     ->setTitle('titleOfMessage')    // not require
  *     ->setMessage('bodyOfMessage')   // require
- *     ->setDevice('htcsensation')     // not require
  *     ->setPriority(0)                // not require. can be -1, 0, 1
- *     ->send();                       // return true or false
+ *     ->personalSend();               // return true or false
+ *
+ * Yii::app()->Jeapie
+ *     ->setEmails(array('login@exmple.com'))       // require for users send
+ *     ->sendUsers();                   // return true or false
+ * 
+ * Yii::app()->Jeapie
+ *     ->broadcastSend();               // return true or false
  * 
  * */
 class PushMessageComponent extends CComponent
@@ -52,9 +55,6 @@ class PushMessageComponent extends CComponent
 	public function init()
 	{
 		$this->_pushMessage = PushMessage::init();
-
-		if (!empty($this->configs['user']))
-			$this->_pushMessage->setUser($this->configs['user']);
 
 		if (!empty($this->configs['token']))
 			$this->_pushMessage->setToken($this->configs['token']);
