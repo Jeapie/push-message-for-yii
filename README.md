@@ -34,17 +34,17 @@ It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
     
     // send to yourself
     Yii::app()->Jeapie
-        ->setToken('tokenKey')          // require
-        ->setTitle('titleOfMessage')    // not require
-        ->setMessage('bodyOfMessage')   // require
-        ->setPriority(0)                // not require. can be -1, 0, 1
+        ->setToken('tokenKey')          // required
+        ->setTitle('titleOfMessage')    // optional
+        ->setMessage('bodyOfMessage')   // required
+        ->setPriority(0)                // optional. can be -1, 0, 1
         ->disableSslVerification()      // optional
         ->personalSend();                       // return true or false
     
     // send to your provider subscriber
     
     Yii::app()->Jeapie
-        ->setEmails(array('login@exmple.com'))       // require for users send
+        ->setEmails(array('login@exmple.com'))       // required for users send
         ->sendUsers();                   // return true or false
     // send to all provider subscribers
     Yii::app()->Jeapie
