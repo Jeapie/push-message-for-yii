@@ -2,7 +2,7 @@ push-message-for-yii
 ====================
 
 It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
- In the config can set default values ​​user, token, title, priority
+ In the config can set default values ​​token, title, priority
 
     'import'=>array(
           ...
@@ -30,7 +30,7 @@ It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
 `Yii::app()->Jeapie->personalSend();`
 
  Or define/redefine in program
-
+    // send to yourself
     Yii::app()->Jeapie
         ->setToken('tokenKey')          // require
         ->setTitle('titleOfMessage')    // not require
@@ -38,11 +38,13 @@ It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
         ->setPriority(0)                // not require. can be -1, 0, 1
         ->disableSslVerification()      // optional
         ->personalSend();                       // return true or false
-
+    
+    // send to your provider subscriber
+    
     Yii::app()->Jeapie
         ->setEmails(array('login@exmple.com'))       // require for users send
         ->sendUsers();                   // return true or false
-
+    // send to all provider subscribers
     Yii::app()->Jeapie
         ->broadcastSend();               // return true or false
 
