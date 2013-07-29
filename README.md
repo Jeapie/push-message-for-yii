@@ -30,6 +30,8 @@ It's a wrapper for the standard library [Jeapie](http://jeapie.com/ "Jeapie").
 `Yii::app()->Jeapie->personalSend();`
 
  Or define/redefine in program
+    
+    
     // send to yourself
     Yii::app()->Jeapie
         ->setToken('tokenKey')          // require
